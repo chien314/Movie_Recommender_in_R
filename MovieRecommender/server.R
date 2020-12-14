@@ -69,8 +69,8 @@ shinyServer(function(input, output, session) {
       
       top_10 = callfromUI(list(user_ratings$MovieID),list(user_ratings$Rating))
       print(top_10)
-      realID = which(top_10 %in% popMovie$MovieID)
-      
+      realID = which(popMovie$MovieID %in% top_10)
+      print(realID)
       recom_results <- data.table(MovieID = realID, 
                                   Title = popMovie$Title[realID])
       #print(recom_results)
