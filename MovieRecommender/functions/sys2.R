@@ -53,7 +53,8 @@ callfromUI = function(MovieIDList, ratingList){
                     ))
   new.Rmat = as(new.user, 'realRatingMatrix')
   # prediction
-  recom = predict(rec_SVDF, new.Rmat, type = 'ratings')
+  recom = predict(rec_UBCF, new.Rmat, type = 'ratings')
+  #recom = predict(rec_SVDF, new.Rmat, type = 'ratings')
   #as(recom, 'matrix')
   recom_results = data.frame(mID=dimnames(recom)[[2]],pred_ratings=as.vector(as(recom, 'matrix')))
   recom_results = recom_results[order(recom_results$pred_ratings, decreasing=TRUE),]
