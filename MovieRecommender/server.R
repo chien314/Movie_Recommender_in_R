@@ -92,11 +92,10 @@ shinyServer(function(input, output, session) {
             div(style = "text-align:center", 
                 a(img(src = recom_result$Image[(i - 1) * num_movies + j], height = 150))
             ),
-            br(),
-            div(style="text-align:center; font-size: 80%", 
+            div(style="text-align:center; font-size: 100%", 
                 strong("Title: ",recom_result$Title[(i - 1) * num_movies + j])
             ),
-            div(style="text-align:center; font-size: 80%", 
+            div(style="text-align:center; font-size: 100%", 
                 strong("Rating: ", recom_result$Ave_rating[(i - 1) * num_movies + j])
             ) #,
         #    div(style="text-align:center; font-size: 80%", 
