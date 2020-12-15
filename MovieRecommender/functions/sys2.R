@@ -75,6 +75,7 @@ callfromUI = function(movieIDList, ratingList){
   #as(recom, 'matrix')
   recom_results = data.frame(mID=dimnames(recom)[[2]],pred_ratings=as.vector(as(recom, 'matrix')))
   recom_results = recom_results[order(recom_results$pred_ratings, decreasing=TRUE),][1:100,]
+  set.seed(111)
   if (length(unique(recom_results$pred_ratings[1:100])) < 3){
   rec_10 = sample(recom_results$mID[1:100],10)
   } else if (length(unique(recom_results$pred_ratings[1:10])) == 1){
