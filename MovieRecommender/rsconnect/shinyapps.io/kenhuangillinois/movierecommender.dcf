@@ -5,6 +5,6 @@ account: kenhuangillinois
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 3401751
-bundleId: 3990019
+bundleId: 3990284
 url: https://kenhuangillinois.shinyapps.io/movierecommender/
-when: 1607998317.9835
+when: 1608002759.24496
