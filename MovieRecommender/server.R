@@ -43,14 +43,15 @@ shinyServer(function(input, output, session) {
       runjs(jsCode)
       
       genere_result = popular_genere(input$genere)
-      #print(genere_result)
+
+      #realID = which(genere_result$MovieID %in% movies$MovieID)
       recomgenere_results <- data.table(
                                   MovieID = genere_result$MovieID, 
                                   Title = genere_result$Title, 
                                   Ave_rating =  genere_result$ratings_per_movie, #ratings_per_movie
                                   Genre = genere_result$Genres,
                                   Image = genere_result$image_url)
-      #print(recomgenere_results)
+
       
     }) # still busy
     
