@@ -55,8 +55,8 @@ callfromUI = function(movieIDList, ratingList){
   #View(Rmatrix)
   # traing model
   #rec_UBCF = Recommender(Rmatrix, method = 'UBCF',parameter = list(normalize = 'Z-score', method = 'pearson', nn = 150))
-  rec_UBCF = Recommender(Rmatrix, method = 'UBCF',parameter = list(normalize = 'Z-score',method = 'Cosine', nn = 25))
-  #rec_SVDF = Recommender(Rmatrix, method = 'SVD',parameter = list(k = 9))
+  #rec_UBCF = Recommender(Rmatrix, method = 'UBCF',parameter = list(normalize = 'Z-score',method = 'Cosine', nn = 25))
+  rec_SVDF = Recommender(Rmatrix, method = 'SVD',parameter = list(k = 9))
   # new user
   n.item = ncol(Rmatrix) 
   new.ratings = rep(NA, n.item)  
@@ -76,8 +76,8 @@ callfromUI = function(movieIDList, ratingList){
                       ))
   new.Rmat = as(new.user, 'realRatingMatrix')
   # prediction
-  #recom = predict(rec_SVDF, new.Rmat, type = 'ratings')
-  recom = predict(rec_UBCF, new.Rmat, type = 'ratings')
+  recom = predict(rec_SVDF, new.Rmat, type = 'ratings')
+  #recom = predict(rec_UBCF, new.Rmat, type = 'ratings')
   #as(recom, 'matrix')
   recom_results = data.frame(mID=dimnames(recom)[[2]],pred_ratings=as.vector(as(recom, 'matrix')))
   recom_results = recom_results[order(recom_results$pred_ratings, decreasing=TRUE),][1:100,]
