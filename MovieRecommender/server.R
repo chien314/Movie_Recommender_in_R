@@ -4,45 +4,6 @@
 source('functions/sample.R')
 source('functions/sys1.R')
 source('functions/sys2.R')
-
-get_model = function(){
-  myurl = "https://liangfgithub.github.io/MovieData/"
-  ratings = read.csv(paste0(myurl, 'ratings.dat?raw=true'), 
-                     sep = ':',
-                     colClasses = c('integer', 'NULL'), 
-                     header = FALSE)
-  colnames(ratings) = c('UserID', 'MovieID', 'Rating', 'Timestamp')
-  # filter ratings_per_movie > 500 and ratings_per_user >100 to get ratings_new
-  popMovie = ratings %>% 
-    group_by(MovieID) %>% 
-    summarize(ratings_per_movie = n(), ave_ratings = mean(Rating)) %>%
-    inner_join(movies, by = 'MovieID') %>% 
-    filter(ratings_per_movie > 500)
-  popID = popMovie %>% select(MovieID)
-  freqUser = ratings %>% 
-    inner_join(popID, by = 'MovieID')  %>% 
-    group_by(UserID) %>% 
-    summarize(ratings_per_user = n()) %>% 
-    filter(ratings_per_user >100) 
-  freqID = freqUser %>%  select(UserID)
-  ratings_new = ratings %>% 
-    inner_join(freqID, by = 'UserID')%>% 
-    inner_join(popID, by = 'MovieID')
-  # build the training matrix
-  i = paste0('u', ratings_new$UserID)
-  j = paste0('m', ratings_new$MovieID)
-  x = ratings_new$Rating
-  tmp = data.frame(i, j, x, stringsAsFactors = T)
-  Rmatrix = sparseMatrix(as.integer(tmp$i), as.integer(tmp$j), x = tmp$x)
-  rownames(Rmatrix) = levels(tmp$i)
-  colnames(Rmatrix) = levels(tmp$j)
-  Rmatrix = new('realRatingMatrix', data = Rmatrix)
-  # traing model
-  rec_UBCF = Recommender(Rmatrix, method = 'UBCF',
-                         parameter = list(normalize = 'Z-score', method = 'pearson', nn = 150))
-  rec_SVDF = Recommender(Rmatrix, method = 'SVDF',parameter = list(normalize = 'Z-score', k = 9))
-  
-}
 get_user_ratings = function(value_list) {
   dat = data.table(MovieID = sapply(strsplit(names(value_list), "_"), 
                                     function(x) ifelse(length(x) > 1, x[[2]], NA)),
@@ -108,8 +69,8 @@ shinyServer(function(input, output, session) {
       
       top_10 = callfromUI(list(user_ratings$MovieID),list(user_ratings$Rating))
       print(top_10)
-      realID = which(top_10 %in% popMovie$MovieID)
-      
+      realID = which(popMovie$MovieID %in% top_10)
+      print(realID)
       recom_results <- data.table(MovieID = realID, 
                                   Title = popMovie$Title[realID])
       #print(recom_results)
