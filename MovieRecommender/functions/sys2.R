@@ -1,5 +1,4 @@
-callfromUI = function(movieIDList, ratingList){
-  #get ratings
+#get ratings
   myurl = "https://liangfgithub.github.io/MovieData/"
   ratings = read.csv(paste0(myurl, 'ratings.dat?raw=true'),
                      sep = ':',
@@ -57,6 +56,8 @@ callfromUI = function(movieIDList, ratingList){
   #rec_UBCF = Recommender(Rmatrix, method = 'UBCF',parameter = list(normalize = 'Z-score', method = 'pearson', nn = 150))
   #rec_UBCF = Recommender(Rmatrix, method = 'UBCF',parameter = list(normalize = 'Z-score',method = 'Cosine', nn = 25))
   rec_SVDF = Recommender(Rmatrix, method = 'SVD',parameter = list(k = 9))
+           
+callfromUI = function(movieIDList, ratingList){
   # new user
   n.item = ncol(Rmatrix) 
   new.ratings = rep(NA, n.item)  
