@@ -43,12 +43,14 @@ shinyServer(function(input, output, session) {
       runjs(jsCode)
       
       genere_result = popular_genere(input$genere)
-      #realID = which(genere_result$MovieID %in% movies$MovieID)
+      #print(genere_result)
       recomgenere_results <- data.table(
                                   MovieID = genere_result$MovieID, 
                                   Title = genere_result$Title, 
                                   Ave_rating =  genere_result$ratings_per_movie, #ratings_per_movie
-                                  Genre = genere_result$Genres)
+                                  Genre = genere_result$Genres,
+                                  Image = genere_result$image_url)
+      #print(recomgenere_results)
       
     }) # still busy
     
@@ -87,7 +89,7 @@ shinyServer(function(input, output, session) {
         box(width = 2, status = "success", solidHeader = TRUE, title = paste0("Rank ", (i - 1) * num_movies + j),
             
             div(style = "text-align:center", 
-                a(img(src = image[recom_result$MovieID][(i - 1) * num_movies + j], height = 150))
+                a(img(src = recom_result$Image[(i - 1) * num_movies + j], height = 150))
             ),
             div(style="text-align:center; font-size: 100%", 
                 strong("Title: ",recom_result$Title[(i - 1) * num_movies + j])
