@@ -132,5 +132,4 @@ shinyServer(function(input, output, session) {
     }) # rows
     
   }) # renderUI function
-  
 }) # server function
