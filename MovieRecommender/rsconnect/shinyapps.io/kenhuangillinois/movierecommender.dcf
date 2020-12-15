@@ -1,0 +1,10 @@
+name: movierecommender
+title:
+username:
+account: kenhuangillinois
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3401751
+bundleId: 3990019
+url: https://kenhuangillinois.shinyapps.io/movierecommender/
+when: 1607998317.9835

@@ -5,7 +5,9 @@ library(recommenderlab)
 library(data.table)
 library(ShinyRatingInput)
 library(shinyjs)
-library(shinyalert)
+library(dplyr) 
+
+
 source('functions/helpers.R')
 source('functions/genere.R')
 
