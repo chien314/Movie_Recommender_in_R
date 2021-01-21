@@ -4,7 +4,7 @@ https://kenhuangillinois.shinyapps.io/movierecommender/
 
 The dataset contains about one million anonymous ratings of approximately 3,900 movies made by 6,040 MovieLens users who joined MovieLens in 2000.
 
-The website consists of two systems:
+The website consists of the following two systems:
 
 System I: Recommendation based on genres
 
