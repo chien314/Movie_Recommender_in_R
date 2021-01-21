@@ -15,4 +15,4 @@ The metric we propose is based on the popularity of the movies, where the popula
 
 System II: Collaborative Recommendation System
 
-The app first provides some sample movies and ask a users to rate. Next, it recommends the top 10 movies based on the ratings the user provides. Collaborative filtering is a method of making automatic predictions (filtering) about the interests of a user by collecting preferences from many users (collaborating).
+The APP first provides some sample movies and ask users to rate. Next, it recommends the top 10 movies based on the ratings that the user provides. Collaborative filtering is a method of making automatic predictions (filtering) about the interests of a user by collecting preferences from many users (collaborating).
